@@ -1,0 +1,31 @@
+{
+  "coverageDirectory": "./coverage",
+  "coveragePathIgnorePatterns": [
+    "<rootDir>/src/migrations/",
+    "<rootDir>/src/repositories/",
+    "<rootDir>/src/types/",
+    "<rootDir>/tests"
+  ],
+  "globals": {
+    "ts-jest": {
+      "babelConfig": true
+    }
+  },
+  "preset": "ts-jest",
+  "roots": ["./tests"],
+  "testMatch": ["<rootDir>/tests/**/*.spec.(js|ts)"],
+  "moduleFileExtensions": ["ts", "js", "json"],
+  "transform": {
+    "^.+\\.js$": "babel-jest",
+    "^.+\\.ts$": "ts-jest"
+  },
+  "verbose": true,
+  "coverageThreshold": {
+    "global": {
+      "branches": 100,
+      "functions": 100,
+      "lines": 100,
+      "statements": 100
+    }
+  }
+}
