@@ -1,0 +1,13 @@
+# TS
+/build
+# dependencies
+/node_modules
+# testing
+/coverage
+# misc
+.DS_Store
+# debug
+yarn-debug.log*
+yarn-error.log*
+# local env files
+.env
