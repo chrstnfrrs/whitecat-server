@@ -34,7 +34,7 @@ The response should appear as:
 }
 ```
 
-### Running Acceptance Tests
+## Running Acceptance Tests
 
 Running acceptance tests is a two step process.
 
