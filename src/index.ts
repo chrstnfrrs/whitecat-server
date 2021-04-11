@@ -1,18 +1,19 @@
-import express from 'express';
-import { ApolloServer } from 'apollo-server-express';
+import { ApolloServer, makeExecutableSchema } from 'apollo-server';
 
 import { typeDefs } from './types/index';
 import { resolvers } from './resolvers/index';
 
-const app = express();
-
-const apolloServer = new ApolloServer({
+const schema = makeExecutableSchema({
   typeDefs,
   resolvers,
 });
 
-apolloServer.applyMiddleware({ app, cors: false });
+const server = new ApolloServer({
+  schema,
+  playground: true,
+  introspection: true,
+});
 
-app.listen(4000, () => {
-  console.log('🚀  Server ready at http://localhost:4000/graphql');
+server.listen(process.env.PORT || 8080).then(() => {
+  console.log('🚀  Server ready at http://localhost:8080/graphql');
 });
