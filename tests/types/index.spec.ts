@@ -1,4 +1,4 @@
-import { gql } from 'apollo-server-express';
+import { gql } from 'apollo-server';
 import { typeDefs } from '../../src/types/index';
 import Hello from '../../src/types/hello';
 
