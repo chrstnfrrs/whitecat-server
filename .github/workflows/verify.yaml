@@ -1,4 +1,4 @@
-name: 'Verify Acceptance Tests'
+name: 'Verify PR'
 
 on:
   push:
