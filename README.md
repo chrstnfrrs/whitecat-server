@@ -19,6 +19,7 @@ Here you'll have access to multiple graphql queries and mutations.
 A base query on this server is hello. It's a query that resolves to a static string.
 
 When this query is called:
+
 ```
 query Hello {
   hello
@@ -26,6 +27,7 @@ query Hello {
 ```
 
 The response should appear as:
+
 ```
 {
   "data": {
