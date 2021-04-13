@@ -1,4 +1,4 @@
-name: 'coverage'
+name: 'Verify Unit Coverage'
 
 on:
   push:
