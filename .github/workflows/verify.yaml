@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  - acceptance:
 
     runs-on: ubuntu-latest
 
@@ -29,3 +29,13 @@ jobs:
       run: |
           yarn start &
           yarn acceptance
+  - coverage:
+    runs-on: ubuntu-latest
+    env:
+        CI_JOB_NUMBER: 1
+    steps:
+        - uses: actions/checkout@v1
+        - uses: artiomtr/jest-coverage-report-action@v1.2
+          with:
+              github_token: ${{ secrets.GITHUB_TOKEN }}
+              threshold: 100
