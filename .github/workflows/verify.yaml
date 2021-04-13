@@ -28,5 +28,6 @@ jobs:
     - name: Verify (Prettier, Lint, Coverage)
       run: yarn verify
     - name: Acceptance tests
-      run: yarn start &
-      run: yarn acceptance
+      run: |
+          yarn start &
+          yarn acceptance
