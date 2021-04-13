@@ -1,4 +1,4 @@
-import { resolvers } from '../../src/resolvers/index';
+import { resolvers } from '../../src/resolvers';
 import * as HelloResolvers from '../../src/resolvers/hello-resolvers';
 
 jest.mock('../../src/resolvers/hello-resolvers');

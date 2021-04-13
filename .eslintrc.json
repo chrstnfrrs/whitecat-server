@@ -1,0 +1,33 @@
+{
+  "extends": [
+    "get-off-my-lawn",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "ignorePatterns": ["/node_modules/"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "rules": {
+    "eslint-comments/no-unlimited-disable": "off",
+    "no-param-reassign": "off",
+    "no-use-before-define": "off",
+    "node/no-unpublished-import": [
+      "error",
+      {
+        "allowModules": ["chance", "graphql-request"]
+      }
+    ],
+    "unicorn/no-abusive-eslint-disable": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".types.ts", ".ts", ".tsx", "js", ".jsx"]
+      },
+      "typescript": {}
+    }
+  }
+}
