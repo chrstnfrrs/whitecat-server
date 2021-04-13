@@ -1,8 +1,6 @@
 name: 'Verify PR'
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
 
@@ -44,7 +42,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
         run: yarn --frozen-lockfile
-      - name: Acceptance tests
+      - name: Lint App
         run: yarn lint
 
   coverage:
