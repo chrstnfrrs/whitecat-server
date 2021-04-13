@@ -1,5 +1,6 @@
 import { gql } from 'apollo-server';
-import { typeDefs } from '../../src/types/index';
+
+import { typeDefs } from '../../src/types';
 import Hello from '../../src/types/hello';
 
 jest.mock('../../src/types/hello');
