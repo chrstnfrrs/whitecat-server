@@ -11,6 +11,6 @@ describe('When the Hello query is called', () => {
       `,
     );
 
-    expect(data.hello).toStrictEqual('Hello World');
+    expect(data.hello).toStrictEqual('Hello World!');
   });
 });
