@@ -29,6 +29,7 @@ jobs:
       run: |
           yarn start &
           yarn acceptance
+
   coverage:
     runs-on: ubuntu-latest
     env:
