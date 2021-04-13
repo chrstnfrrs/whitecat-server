@@ -26,7 +26,7 @@ jobs:
     - name: Build app
       run: yarn build
     - name: Verify (Prettier, Lint, Coverage)
-      run: yarn verify
+      run: yarn coverage
     - name: Acceptance tests
       run: |
           yarn start &
