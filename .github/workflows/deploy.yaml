@@ -1,23 +1,14 @@
-name: 'Deploy App'
-
+name: Deploy to Google App Engine
 on:
   push:
-    branches: [main]
-
+    branches:
+      - master
 jobs:
-  deploy:
+  build:
+    name: GAE Deploy
     runs-on: ubuntu-latest
-
     steps:
-      - name: Initialize Google Cloud SDK
-        uses: zxyle/publish-gae-action@master
+      - uses: actions/checkout@v2
+      - uses: google-github-actions/deploy-appengine@main
         with:
-          service_account_email: ${{ secrets.GCP_SA_EMAIL }}
-          service_account_key: ${{ secrets.GCP_SA_KEY }}
-          project_id: ${{ secrets.PROJECT_ID }}
-
-      - name: Publish app to Google App Engine
-        run: |
-          gcloud auth activate-service-account ${{ secrets.GCP_SA_EMAIL }} --key-file=client-secret.json
-          gcloud config set project ${{ secrets.PROJECT_ID }}
-          gcloud -q app deploy app.yaml --promote
+          credentials: ${{ secrets.GCP_SA_KEY }}
