@@ -7,6 +7,7 @@ const schema = makeExecutableSchema({
   resolvers,
   typeDefs,
 });
+
 const server = new ApolloServer({
   introspection: true,
   playground: true,
