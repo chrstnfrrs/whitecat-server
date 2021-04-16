@@ -1,10 +1,13 @@
 steps:
 - name: node:10.15.1
-  entrypoint: npm
+  entrypoint: yarn
   args: ["install"]
 - name: node:10.15.1
-  entrypoint: npm
-  args: ["run", "create-env"]
+  entrypoint: yarn
+  args: ["build"]
+- name: node:10.15.1
+  entrypoint: yarn
+  args: ["create-env"]
   env:
     - 'SECRET=${_SECRET}'
 - name: "gcr.io/cloud-builders/gcloud"
