@@ -1,7 +1,9 @@
 import { ApolloServer, makeExecutableSchema } from 'apollo-server';
+import 'dotenv/config';
 
 import { typeDefs } from './types';
 import { resolvers } from './resolvers';
+import db from './querybuilder';
 
 const schema = makeExecutableSchema({
   resolvers,
@@ -14,7 +16,21 @@ const server = new ApolloServer({
   schema,
 });
 
+const runMigrations = async () => {
+  try {
+    const hasUsers = await db.schema.hasTable('users');
+    console.log('hasUsers', hasUsers);
+  } catch (error) {
+    console.log('run migrations error', error);
+  }
+};
+
+try {
+  runMigrations();
+} catch (error) {
+  console.log('error', error);
+}
+
 server.listen(process.env.PORT || 8080).then(() => {
-  // eslint-disable-next-line no-console
   console.log('🚀  Server ready at http://localhost:8080/graphql');
 });
