@@ -7,10 +7,10 @@
   "private": true,
   "scripts": {
     "build": "tsc",
-    "build:dev": "nodemon --es-module-specifier-resolution=node --watch build ./build/index.js",
+    "build:dev": "nodemon --es-module-specifier-resolution=node --watch build ./build/src/index.js",
     "gcp-build": "tsc",
     "dev": "yarn build && yarn build:dev",
-    "start": "node --es-module-specifier-resolution=node ./build/index.js",
+    "start": "node --es-module-specifier-resolution=node ./build/src/index.js",
     "acceptance": "jest --config acceptance/acceptance.config.json",
     "unit": "jest --config jest.config.json",
     "coverage": "jest --collectCoverage --config jest.config.json",
@@ -28,7 +28,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "graphql": "^15.5.0",
-    "knex": "^0.21.17",
+    "knex": "^0.95.4",
     "pg": "^8.5.1"
   },
   "devDependencies": {
