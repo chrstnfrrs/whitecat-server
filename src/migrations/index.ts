@@ -7,10 +7,17 @@ const migrations = async (): Promise<void> => {
   if (!hasTestTable) {
     console.log('creating test table');
 
-    db.schema.createTable('test', (table) => {
-      table.increments('id');
-      table.string('string');
-    });
+    try {
+      await db.schema.createTable('test', (table) => {
+        table.increments('id');
+        table.string('string');
+      });
+    } catch (error) {
+      console.log('table create error', error);
+    }
+
+    const asdf = await db.schema.hasTable('test');
+    console.log('asdf', asdf);
   }
 };
 
