@@ -9,7 +9,10 @@ steps:
   entrypoint: yarn
   args: ["create-env"]
   env:
-    - 'SECRET=${_SECRET}'
+    - 'DB_NAME=${_DB_NAME}'
+    - 'DB_PASSWORD=${_DB_PASSWORD}'
+    - 'DB_USER=${_DB_USER}'
+    - 'CLOUD_SQL_CONNECTION_NAME=${_CLOUD_SQL_CONNECTION_NAME}'
 - name: "gcr.io/cloud-builders/gcloud"
   args: ["app", "deploy"]
 timeout: "1600s"

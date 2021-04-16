@@ -1,5 +1,9 @@
-const helloResolver = (): string => {
-  return process.env.SECRET || 'missing';
+import db from '../querybuilder';
+
+const helloResolver = async (): Promise<string> => {
+  const hasUsers = await db.schema.hasTable('users');
+
+  return hasUsers.toString();
 };
 
 export { helloResolver };
