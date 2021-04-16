@@ -6,6 +6,7 @@
   "main": "src/index.js",
   "private": true,
   "scripts": {
+    "create-env": "printenv > .env",
     "build": "tsc",
     "build:dev": "nodemon --es-module-specifier-resolution=node --watch build ./build/src/index.js",
     "gcp-build": "tsc",
