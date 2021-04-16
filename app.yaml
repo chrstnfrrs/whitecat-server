@@ -1,9 +1,2 @@
 runtime: nodejs14
 env: standard
-
-env_variables:
-  DB_NAME: ${{ secrets.DB_NAME }}
-  DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-  DB_USER: ${{ secrets.DB_USER }}
-  CLOUD_SQL_CONNECTION_NAME: ${{ secrets.CLOUD_SQL_CONNECTION_NAME }}
-  DB_HOST: ${{ secrets.DB_HOST }}
