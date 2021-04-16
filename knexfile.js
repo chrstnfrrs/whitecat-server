@@ -4,7 +4,7 @@ const config = {
     connection: {
       database: process.env.DB_NAME,
       // host: process.env.DB_HOST,
-      host: `/cloudsql/${process.env.CLOUD_SQL_CONNECTION_NAME}`,
+      host: `${process.env.DB_HOST}/${process.env.CLOUD_SQL_CONNECTION_NAME}`,
       password: process.env.DB_PASSWORD,
       user: process.env.DB_USER,
     },

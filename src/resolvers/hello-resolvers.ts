@@ -1,4 +1,4 @@
-import db from 'querybuilder';
+import db from '../querybuilder';
 
 const helloResolver = async (): Promise<string> => {
   const hasUsers = await db.schema.hasTable('users');
