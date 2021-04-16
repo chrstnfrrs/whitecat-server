@@ -1,9 +1,15 @@
 import db from '../querybuilder';
 
 const helloResolver = async (): Promise<string> => {
-  const hasTest = await db.schema.hasTable('test');
+  let hasTest;
 
-  return hasTest.toString();
+  try {
+    hasTest = await db.schema.hasTable('test');
+  } catch (error) {
+    console.log('error', error);
+  }
+
+  return hasTest?.toString() || '';
 };
 
 export { helloResolver };
