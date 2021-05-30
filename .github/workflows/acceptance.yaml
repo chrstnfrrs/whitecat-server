@@ -32,8 +32,9 @@ jobs:
       - name: Run migrations
         run: yarn docker:migrate
       - name: Setup fake data
-        run: yarn docker:setup
+        run: yarn docker:setup:data
       - name: Acceptance tests
         run: |
           yarn start &
+          sleep 10 &&
           yarn acceptance
