@@ -3,7 +3,7 @@ import { request, gql } from 'graphql-request';
 describe('When the Hello query is called', () => {
   test('Then it should return Hello', async () => {
     const data = await request(
-      'http://localhost:8080/graphql',
+      `http://localhost:${process.env.PORT || 8080}`,
       gql`
         query Users {
           users {
@@ -16,9 +16,13 @@ describe('When the Hello query is called', () => {
       `,
     );
 
-    // eslint-disable-next-line no-console
-    console.log('data', data);
-
-    expect(data.users.length).toBeGreaterThanOrEqual(1);
+    expect(data.users).toStrictEqual([
+      {
+        email: 'admin@test.com',
+        firstName: 'Christian',
+        id: '87228c55-603d-4094-84bc-4cdadbef09dc',
+        lastName: 'Farris',
+      },
+    ]);
   });
 });
