@@ -8,7 +8,7 @@
   "scripts": {
     "acceptance": "jest --config acceptance/acceptance.config.json",
     "build": "tsc -p .",
-    "build:dev": "nodemon --es-module-specifier-resolution=node --watch build ./build/index",
+    "build:dev": "nodemon --es-module-specifier-resolution=node --watch build build/index",
     "coverage": "jest --collectCoverage --config jest.config.json",
     "create-env": "printenv > .env",
     "dev": "yarn build && yarn build:dev",
@@ -16,12 +16,12 @@
     "docker:migrate": "npx prisma migrate deploy",
     "docker:postgres": "cd infrastructure && docker-compose down && docker-compose up -d",
     "docker:postgres:stop": "cd infrastructure && docker-compose down",
-    "docker:setup": "node --loader ts-node/esm --es-module-specifier-resolution=node ./infrastructure/data/index",
+    "docker:setup": "node --loader ts-node/esm --es-module-specifier-resolution=node infrastructure/data/index",
     "docker:stop": "yarn docker:postgres:stop",
     "gcp-build": "tsc",
     "lint": "eslint 'src/**/*.ts' 'tests/**/*.ts' 'infrastructure/**/*.ts' --quiet",
     "prettier": "prettier --write .",
-    "start": "node --es-module-specifier-resolution=node ./build/src/index.js",
+    "start": "node --es-module-specifier-resolution=node build/src/index.js",
     "unit": "jest --config jest.config.json",
     "verify": "yarn prettier && yarn lint && yarn coverage",
     "codegen": "graphql-codegen --config codegen.yml"
