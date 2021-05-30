@@ -27,6 +27,8 @@ jobs:
         run: yarn build
       - name: Start docker postgres
         run: yarn docker:infra
+      - name: Prisma Generate
+        run: yarn docker:generate
       - name: Run migrations
         run: yarn docker:migrate
       - name: Setup fake data

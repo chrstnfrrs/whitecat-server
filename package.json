@@ -13,6 +13,7 @@
     "create-env": "printenv > .env",
     "dev": "yarn build && yarn build:dev",
     "docker:infra": "yarn docker:postgres",
+    "docker:generate": "npx prisma generate",
     "docker:migrate": "npx prisma migrate deploy",
     "docker:migrate:dev": "npx prisma migrate dev",
     "docker:postgres": "cd infrastructure && docker-compose down && docker-compose up -d",
