@@ -24,7 +24,7 @@
     "gcp-build": "tsc",
     "lint": "eslint 'src/**/*.ts' 'tests/**/*.ts' 'infrastructure/**/*.ts' --quiet",
     "prettier": "prettier --write .",
-    "start": "node --es-module-specifier-resolution=node build/src/index.js",
+    "start": "node --loader ts-node/esm --es-module-specifier-resolution=node src/index",
     "unit": "jest --config jest.config.json",
     "verify": "yarn prettier && yarn lint && yarn coverage",
     "codegen": "graphql-codegen --config codegen.yml"
