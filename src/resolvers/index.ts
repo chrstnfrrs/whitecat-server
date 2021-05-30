@@ -1,8 +1,15 @@
-import { helloResolver } from './hello-resolvers';
+import * as UserResolvers from './user-resolvers';
 
 const resolvers = {
+  Mutation: {
+    createUser: UserResolvers.create,
+    deleteUser: UserResolvers.del,
+    updateUser: UserResolvers.update,
+  },
   Query: {
-    hello: helloResolver,
+    hello: (): string => 'Hello',
+    user: UserResolvers.getById,
+    users: UserResolvers.getWhere,
   },
 };
 
