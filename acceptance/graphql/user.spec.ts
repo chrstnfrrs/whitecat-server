@@ -16,13 +16,8 @@ describe('When the Hello query is called', () => {
       `,
     );
 
-    expect(data.users).toStrictEqual([
-      {
-        email: 'admin@test.com',
-        firstName: 'Christian',
-        id: '87228c55-603d-4094-84bc-4cdadbef09dc',
-        lastName: 'Farris',
-      },
-    ]);
+    expect(data.users[0].email).toStrictEqual('admin@test.com');
+    expect(data.users[0].firstName).toStrictEqual('Christian');
+    expect(data.users[0].lastName).toStrictEqual('Farris');
   });
 });
