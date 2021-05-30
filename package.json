@@ -13,6 +13,7 @@
     "create-env": "printenv > .env",
     "dev": "yarn build && yarn build:dev",
     "docker:infra": "yarn docker:postgres",
+    "docker:migrate": "npx prisma migrate deploy",
     "docker:postgres": "cd infrastructure && docker-compose down && docker-compose up -d",
     "docker:postgres:stop": "cd infrastructure && docker-compose down",
     "docker:setup": "node --loader ts-node/esm --es-module-specifier-resolution=node ./infrastructure/data/index",

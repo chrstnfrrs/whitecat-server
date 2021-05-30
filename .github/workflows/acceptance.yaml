@@ -1,0 +1,36 @@
+name: 'Acceptance'
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+      - name: Build app
+        run: yarn build
+      - name: Start docker postgres
+        run: yarn docker:infra
+      - name: Run migrations
+        run: yarn docker:migrate
+      - name: Setup fake data
+        run: yarn docker:setup
+      - name: Acceptance tests
+        run: |
+          yarn start &
+          yarn acceptance
