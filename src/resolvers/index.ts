@@ -1,15 +1,21 @@
-import * as UserResolvers from './user-resolvers';
+import {
+  create as createUser,
+  del as deleteUser,
+  update as updateUser,
+  getById as user,
+  getWhere as users,
+} from './user-resolvers';
 
 const resolvers = {
   Mutation: {
-    createUser: UserResolvers.create,
-    deleteUser: UserResolvers.del,
-    updateUser: UserResolvers.update,
+    createUser,
+    deleteUser,
+    updateUser,
   },
   Query: {
     hello: (): string => 'Hello',
-    user: UserResolvers.getById,
-    users: UserResolvers.getWhere,
+    user,
+    users,
   },
 };
 
