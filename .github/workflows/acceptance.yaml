@@ -13,7 +13,8 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x]
-    
+    env:
+      DATABASE_URL: ${{secrets.DATABASE_URL}}
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
