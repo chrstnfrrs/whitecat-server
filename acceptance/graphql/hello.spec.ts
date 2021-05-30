@@ -12,6 +12,8 @@ describe('When the Hello query is called', () => {
         `,
       );
 
+      // eslint-disable-next-line no-console
+      console.log('data', data);
       expect(data.hello).toStrictEqual('Hello');
     } catch (error) {
       // eslint-disable-next-line no-console
