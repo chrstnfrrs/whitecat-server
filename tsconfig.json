@@ -30,6 +30,6 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true
   },
-  "exclude": ["node_modules", "build", "coverage"],
+  "exclude": ["node_modules", "build", "coverage", "tests"],
   "include": ["./src/**/*.ts"]
 }
