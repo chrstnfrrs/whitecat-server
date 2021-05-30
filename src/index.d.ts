@@ -10,4 +10,6 @@ interface GraphqlError {
 type AllowAny = any;
 type Uuid = string;
 
-export { AllowAny, IContext, GraphqlError, Uuid, User };
+type CreateGraphqlError = ({ error: any }) => GraphqlError;
+
+export { AllowAny, CreateGraphqlError, IContext, GraphqlError, Uuid, User };
