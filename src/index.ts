@@ -18,7 +18,11 @@ const startServer = () => {
 
   server.listen(process.env.PORT || 8080).then(() => {
     // eslint-disable-next-line no-console
-    console.log('🚀  Server ready at http://localhost:8080/graphql');
+    console.log(
+      `🚀  Server ready at http://localhost:${
+        process.env.PORT || 8080
+      }/graphql`,
+    );
   });
 };
 

@@ -3,7 +3,7 @@ import { request, gql } from 'graphql-request';
 describe('When the Hello query is called', () => {
   test('Then it should return Hello', async () => {
     const data = await request(
-      'http://localhost:8080/graphql',
+      `http://localhost:${process.env.PORT || 8080}/graphql`,
       gql`
         query Hello {
           hello
