@@ -1,7 +1,7 @@
 import { ApolloServer, makeExecutableSchema } from 'apollo-server';
 import 'dotenv/config';
 
-import { typeDefs } from './types';
+import { typeDefs } from './schema';
 import { resolvers } from './resolvers';
 
 const startServer = () => {
