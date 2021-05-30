@@ -1,11 +1,15 @@
 import { gql } from 'apollo-server';
 
-import Hello from './hello';
+import HelloTypes from './hello-types';
+import UserTypes from './user-types';
 
 const Query = gql`
   type Query
 `;
+const Mutation = gql`
+  type Mutation
+`;
 
-const typeDefs = [Query, Hello];
+const typeDefs = [Query, Mutation, HelloTypes, UserTypes];
 
 export { typeDefs };
