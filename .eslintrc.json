@@ -17,10 +17,11 @@
     "node/no-unpublished-import": [
       "error",
       {
-        "allowModules": ["chance", "graphql-request"]
+        "allowModules": ["chance", "graphql-request", "jest-mock-extended"]
       }
     ],
-    "unicorn/no-abusive-eslint-disable": "off"
+    "unicorn/no-abusive-eslint-disable": "off",
+    "unicorn/no-null": "off"
   },
   "settings": {
     "import/resolver": {
