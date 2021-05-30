@@ -4,7 +4,7 @@ describe('When the Hello query is called', () => {
   test('Then it should return Hello', async () => {
     try {
       const data = await request(
-        `http://localhost:${process.env.PORT || 8080}/graphql`,
+        `http://localhost:${process.env.PORT || 8080}`,
         gql`
           query Hello {
             hello
