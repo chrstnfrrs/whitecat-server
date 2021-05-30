@@ -1,46 +1,55 @@
-import { prisma } from '../adapters/prisma-adapter';
+import * as ErrorUtils from '../utils/error-utils';
+import * as UserServices from '../services/user-services';
+import * as Types from '../index.d';
 
-import * as UserResolvers from './user-resolvers.d';
-
-const create: UserResolvers.Create = async (_root, args) => {
+const create: Types.User.Create = async (_root, args) => {
   const { input } = args;
 
-  const user = await prisma.user.create({ data: input });
-
-  if (!user) throw new Error('Failed to insert user');
-
-  return user;
+  try {
+    return await UserServices.create(input);
+  } catch (error) {
+    throw ErrorUtils.createGraphqlError(error);
+  }
 };
 
-const del: UserResolvers.Del = async (_root, args) => {
+const del: Types.User.Del = async (_root, args) => {
   const { id } = args;
 
-  const deletedUser = await prisma.user.delete({ where: { id } });
-
-  return Boolean(deletedUser);
+  try {
+    return await UserServices.del(id);
+  } catch (error) {
+    throw ErrorUtils.createGraphqlError(error);
+  }
 };
 
-const getById: UserResolvers.GetById = async (_root, args) => {
+const getById: Types.User.GetById = async (_root, args) => {
   const { id } = args;
 
-  const user = await prisma.user.findUnique({ where: { id } });
-
-  return user;
+  try {
+    return await UserServices.getById(id);
+  } catch (error) {
+    throw ErrorUtils.createGraphqlError(error);
+  }
 };
 
-const getWhere: UserResolvers.GetWhere = () => prisma.user.findMany();
+const getWhere: Types.User.GetWhere = async (_root, args) => {
+  const { where } = args;
 
-const update: UserResolvers.Update = async (_root, args) => {
+  try {
+    return await UserServices.getWhere(where);
+  } catch (error) {
+    throw ErrorUtils.createGraphqlError(error);
+  }
+};
+
+const update: Types.User.Update = async (_root, args) => {
   const { id, input } = args;
 
-  const user = await prisma.user.update({
-    data: input,
-    where: { id },
-  });
-
-  if (!user) throw new Error('Failed to update user');
-
-  return user;
+  try {
+    return await UserServices.update(id, input);
+  } catch (error) {
+    throw ErrorUtils.createGraphqlError(error);
+  }
 };
 
 export { create, del, getById, getWhere, update };
