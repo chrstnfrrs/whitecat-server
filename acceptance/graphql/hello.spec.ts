@@ -1,7 +1,7 @@
 import { request, gql } from 'graphql-request';
 
 describe('When the Hello query is called', () => {
-  test('Then it should return Hello World', async () => {
+  test('Then it should return Hello', async () => {
     const data = await request(
       'http://localhost:8080/graphql',
       gql`
@@ -11,6 +11,6 @@ describe('When the Hello query is called', () => {
       `,
     );
 
-    expect(data.hello).toStrictEqual('Hello World');
+    expect(data.hello).toStrictEqual('Hello');
   });
 });
