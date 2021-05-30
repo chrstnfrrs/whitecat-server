@@ -14,7 +14,7 @@ This is the server that runs **whitecat**. It's an Apollo server that connects t
 
 ## Using GraphQL Playground
 
-After running `yarn dev` the graphql server will have a graphql playground available at: `http://localhost:4000/graphql`.
+After running `yarn dev` the graphql server will have a graphql playground available at: `http://localhost:8080/graphql`.
 
 Here you'll have access to multiple graphql queries and mutations.
 
