@@ -1,18 +1,18 @@
 steps:
-- name: node:14
-  entrypoint: yarn
-  args: ["install"]
-- name: node:14
-  entrypoint: yarn
-  args: ["build"]
-- name: node:14
-  entrypoint: yarn
-  args: ["create-env"]
-  env:
-    - 'DB_NAME=${_DB_NAME}'
-    - 'DB_PASSWORD=${_DB_PASSWORD}'
-    - 'DB_USER=${_DB_USER}'
-    - 'CLOUD_SQL_CONNECTION_NAME=${_CLOUD_SQL_CONNECTION_NAME}'
-- name: "gcr.io/cloud-builders/gcloud"
-  args: ["app", "deploy"]
-timeout: "1600s"
+  - name: node:14
+    entrypoint: yarn
+    args: ['install']
+  - name: node:14
+    entrypoint: yarn
+    args: ['build']
+  - name: node:14
+    entrypoint: yarn
+    args: ['create-env']
+    env:
+      - 'DB_NAME=${_DB_NAME}'
+      - 'DB_PASSWORD=${_DB_PASSWORD}'
+      - 'DB_USER=${_DB_USER}'
+      - 'CLOUD_SQL_CONNECTION_NAME=${_CLOUD_SQL_CONNECTION_NAME}'
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['app', 'deploy']
+timeout: '1600s'
