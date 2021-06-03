@@ -1,6 +1,6 @@
 import { gql } from 'apollo-server';
 
-import UserSchema from '../../src/schema/user-schema';
+import UserSchema from '../../../src/schema/user-schema';
 
 describe('Given the UserSchema', () => {
   test('Then should be expected type', () => {

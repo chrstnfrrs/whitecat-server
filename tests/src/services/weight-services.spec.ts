@@ -1,12 +1,12 @@
 import Chance from 'chance';
 
-import * as PrismaAdapter from '../../src/adapters/prisma-adapter';
-import * as WeightServices from '../../src/services/weight-services';
-import { AllowAny, Weight, Uuid } from '../../src/index.d';
-import * as PrismaFactories from '../model-factories/prisma';
-import * as WeightFactory from '../model-factories/weight-model-factories';
+import * as PrismaAdapter from '../../../src/adapters/prisma-adapter';
+import * as WeightServices from '../../../src/services/weight-services';
+import { AllowAny, Weight, Uuid } from '../../../src/index.d';
+import * as PrismaFactories from '../../model-factories/prisma';
+import * as WeightFactory from '../../model-factories/weight-model-factories';
 
-jest.mock('../../src/adapters/prisma-adapter');
+jest.mock('../../../src/adapters/prisma-adapter');
 
 const { prisma } = (PrismaAdapter as jest.Mocked<
   typeof PrismaAdapter

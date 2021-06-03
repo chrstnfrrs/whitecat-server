@@ -1,6 +1,6 @@
 import { gql } from 'apollo-server';
 
-import WeightSchema from '../../src/schema/weight-schema';
+import WeightSchema from '../../../src/schema/weight-schema';
 
 describe('Given the WeightSchema', () => {
   test('Then should be expected type', () => {

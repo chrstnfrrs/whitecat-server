@@ -1,14 +1,14 @@
 import Chance from 'chance';
 
-import * as ErrorFactories from '../model-factories/error-model-factories';
-import * as ErrorUtils from '../../src/utils/error-utils';
-import * as UserFactories from '../model-factories/user-model-factories';
-import * as UserResolvers from '../../src/resolvers/user-resolvers';
-import * as UserServices from '../../src/services/user-services';
-import { IContext, User, GraphqlError, Uuid } from '../../src/index.d';
+import * as ErrorFactories from '../../model-factories/error-model-factories';
+import * as ErrorUtils from '../../../src/utils/error-utils';
+import * as UserFactories from '../../model-factories/user-model-factories';
+import * as UserResolvers from '../../../src/resolvers/user-resolvers';
+import * as UserServices from '../../../src/services/user-services';
+import { IContext, User, GraphqlError, Uuid } from '../../../src/index.d';
 
-jest.mock('../../src/utils/error-utils');
-jest.mock('../../src/services/user-services');
+jest.mock('../../../src/utils/error-utils');
+jest.mock('../../../src/services/user-services');
 
 const {
   create: createService,

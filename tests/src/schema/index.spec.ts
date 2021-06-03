@@ -1,12 +1,12 @@
 import { gql } from 'apollo-server';
 
-import { typeDefs } from '../../src/schema';
-import HelloSchema from '../../src/schema/hello-schema';
-import UserSchema from '../../src/schema/user-schema';
-import WeightSchema from '../../src/schema/weight-schema';
+import { typeDefs } from '../../../src/schema';
+import HelloSchema from '../../../src/schema/hello-schema';
+import UserSchema from '../../../src/schema/user-schema';
+import WeightSchema from '../../../src/schema/weight-schema';
 
-jest.mock('../../src/schema/hello-schema');
-jest.mock('../../src/schema/weight-schema');
+jest.mock('../../../src/schema/hello-schema');
+jest.mock('../../../src/schema/weight-schema');
 
 const expectedQuery = gql`
   type Query

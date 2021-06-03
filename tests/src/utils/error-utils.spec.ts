@@ -1,5 +1,5 @@
-import { GraphqlError } from '../../src/index.d';
-import * as ErrorUtils from '../../src/utils/error-utils';
+import { GraphqlError } from '../../../src/index.d';
+import * as ErrorUtils from '../../../src/utils/error-utils';
 
 describe('Given a set of error utilities', () => {
   describe('When creating a graphql error', () => {
