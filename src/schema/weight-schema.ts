@@ -2,7 +2,7 @@ import { gql } from 'apollo-server';
 
 const typeDefs = gql`
   extend type Query {
-    weights(id: ID!): [Weight!]!
+    weight(id: ID!): [Weight!]!
     weights(where: WeightWhere!): [Weight!]!
   }
 
