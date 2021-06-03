@@ -1,28 +1,65 @@
-import { AllowAny } from '../index.d';
-import { prisma } from '../adapters/prisma-adapter';
+import * as ErrorUtils from '../utils/error-utils';
+import * as WeightServices from '../services/weight-services';
+import * as Types from '../index.d';
 
-const create: AllowAny = async (_root: AllowAny, args: AllowAny) => {
+const create: Types.Weight.ResolverCreate = async (_root, args) => {
   const { input } = args;
 
-  const weight = await prisma.weight.create({ data: input });
-
-  if (!weight) {
-    throw new Error('Failed to insert weight');
+  try {
+    return await WeightServices.create(input);
+  } catch (error) {
+    throw ErrorUtils.createGraphqlError(error);
   }
-
-  return weight;
 };
 
-const getByUserId: AllowAny = async (root: AllowAny) => {
-  const { id } = root;
+const del: Types.Weight.ResolverDel = async (_root, args) => {
+  const { id } = args;
 
-  const weight = await prisma.weight.findMany({ where: { userId: id } });
-
-  if (!weight) {
-    throw new Error('Weight is null');
+  try {
+    return await WeightServices.del(id);
+  } catch (error) {
+    throw ErrorUtils.createGraphqlError(error);
   }
-
-  return weight;
 };
 
-export { create, getByUserId };
+const getById: Types.Weight.ResolverGetById = async (_root, args) => {
+  const { id } = args;
+
+  try {
+    return await WeightServices.getById(id);
+  } catch (error) {
+    throw ErrorUtils.createGraphqlError(error);
+  }
+};
+
+const getByUserId: Types.Weight.ResolverGetByUserId = async (root) => {
+  const { userId } = root;
+
+  try {
+    return await WeightServices.getById(userId);
+  } catch (error) {
+    throw ErrorUtils.createGraphqlError(error);
+  }
+};
+
+const getWhere: Types.Weight.ResolverGetWhere = async (_root, args) => {
+  const { where } = args;
+
+  try {
+    return await WeightServices.getWhere(where);
+  } catch (error) {
+    throw ErrorUtils.createGraphqlError(error);
+  }
+};
+
+const update: Types.Weight.ResolverUpdate = async (_root, args) => {
+  const { id, input } = args;
+
+  try {
+    return await WeightServices.update(id, input);
+  } catch (error) {
+    throw ErrorUtils.createGraphqlError(error);
+  }
+};
+
+export { create, del, getById, getByUserId, getWhere, update };
