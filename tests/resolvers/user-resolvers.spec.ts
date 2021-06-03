@@ -22,21 +22,22 @@ const { createGraphqlError } = ErrorUtils as jest.Mocked<typeof ErrorUtils>;
 const chance = new Chance();
 
 describe('Given a set of user resolvers', () => {
-  let root: null,
-    context: IContext,
+  let context: IContext,
     args: User.Args,
     input: User.Input | User.UpdateInput,
     id: Uuid,
+    userId: Uuid,
     where: User.Where;
 
   beforeEach(() => {
-    root = null;
     context = {};
   });
 
   afterEach(jest.resetAllMocks);
 
   describe('When creating a user', () => {
+    let root: null;
+
     beforeEach(() => {
       input = UserFactories.createRandomUserInput();
       args = {
@@ -95,6 +96,8 @@ describe('Given a set of user resolvers', () => {
     });
   });
   describe('When deleting a user', () => {
+    let root: null;
+
     beforeEach(() => {
       id = chance.guid();
       args = {
@@ -149,6 +152,8 @@ describe('Given a set of user resolvers', () => {
     });
   });
   describe('When getting a user by id', () => {
+    let root: null;
+
     beforeEach(() => {
       id = chance.guid();
       args = {
@@ -206,7 +211,65 @@ describe('Given a set of user resolvers', () => {
       });
     });
   });
+  describe('When getting a user by id on root', () => {
+    let root: User.NestedRoot;
+
+    beforeEach(() => {
+      userId = chance.guid();
+      root = {
+        userId,
+      };
+    });
+
+    describe('When successful', () => {
+      let expectedResult: User.User, result: User.User;
+
+      beforeEach(async () => {
+        expectedResult = UserFactories.createRandomUser();
+        getByIdService.mockResolvedValue(expectedResult);
+
+        result = await UserResolvers.getByIdRoot(root, args as null, context);
+      });
+      test('Then should get a user', () => {
+        expect(getByIdService).toHaveBeenCalledTimes(1);
+        expect(getByIdService).toHaveBeenCalledWith(userId);
+      });
+      test('Then should return a user', () => {
+        expect(result).toStrictEqual(expectedResult);
+      });
+    });
+    describe('When unsuccessful', () => {
+      let expectedError: GraphqlError, creationError: Error, actualError: Error;
+
+      beforeEach(async () => {
+        creationError = new Error(chance.string());
+        getByIdService.mockRejectedValue(creationError);
+
+        expectedError = ErrorFactories.createRandomGraphqlError();
+        createGraphqlError.mockReturnValue(expectedError);
+
+        try {
+          await UserResolvers.getByIdRoot(root, args as null, context);
+        } catch (error) {
+          actualError = error;
+        }
+      });
+      test('Then should try to get a user', () => {
+        expect(getByIdService).toHaveBeenCalledTimes(1);
+        expect(getByIdService).toHaveBeenCalledWith(userId);
+      });
+      test('Then should create a graphql error', () => {
+        expect(createGraphqlError).toHaveBeenCalledTimes(1);
+        expect(createGraphqlError).toHaveBeenCalledWith(creationError);
+      });
+      test('Then should return an error', () => {
+        expect(actualError).toStrictEqual(expectedError);
+      });
+    });
+  });
   describe('When getting a user where x', () => {
+    let root: null;
+
     beforeEach(() => {
       where = UserFactories.createRandomUserInput();
       args = {
@@ -269,6 +332,8 @@ describe('Given a set of user resolvers', () => {
     });
   });
   describe('When updating a user', () => {
+    let root: null;
+
     beforeEach(() => {
       id = chance.guid();
       input = UserFactories.createRandomUserInput() as User.UpdateInput;
