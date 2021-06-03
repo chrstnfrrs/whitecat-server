@@ -6,7 +6,7 @@ describe('Given the WeightSchema', () => {
   test('Then should be expected type', () => {
     expect(WeightSchema).toStrictEqual(gql`
       extend type Query {
-        weights(id: ID!): [Weight!]!
+        weight(id: ID!): [Weight!]!
         weights(where: WeightWhere!): [Weight!]!
       }
 
