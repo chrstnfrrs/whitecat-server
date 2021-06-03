@@ -8,7 +8,11 @@ import {
 } from './user-resolvers';
 import {
   create as createWeight,
+  del as deleteWeight,
+  getById as weight,
+  getWhere as weights,
   getByUserId as getWeightByUserId,
+  update as updateWeight,
 } from './weight-resolvers';
 
 const resolvers = {
@@ -16,12 +20,16 @@ const resolvers = {
     createUser,
     createWeight,
     deleteUser,
+    deleteWeight,
     updateUser,
+    updateWeight,
   },
   Query: {
     hello: (): string => 'Hello',
     user,
     users,
+    weight,
+    weights,
   },
   User: {
     weights: getWeightByUserId,
