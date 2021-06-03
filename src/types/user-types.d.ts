@@ -46,7 +46,13 @@ type UpdateArgs = {
   input: UpdateInput;
 };
 
-type Args = CreateArgs | DelArgs | GetById | GetWhereArgs | UpdateArgs;
+type NestedRoot = {
+  userId: Types.Uuid;
+};
+
+type Root = NestedRoot | null;
+
+type Args = CreateArgs | DelArgs | GetById | GetWhereArgs | UpdateArgs | null;
 
 type Create = (
   root: null,
@@ -126,4 +132,6 @@ export {
   Input,
   UpdateInput,
   Where,
+  Root,
+  NestedRoot,
 };
