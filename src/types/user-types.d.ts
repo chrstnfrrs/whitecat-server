@@ -76,6 +76,14 @@ type GetById = (
   context: Types.IContext,
 ) => Promise<IUser | null>;
 
+type GetByIdRoot = (
+  root: {
+    userId: Types.Uuid;
+  },
+  args: null,
+  context: Types.IContext,
+) => Promise<IUser | null>;
+
 type GetWhere = (
   root: null,
   args: {
@@ -108,6 +116,7 @@ export {
   Del,
   DelArgs,
   GetById,
+  GetByIdRoot,
   GetByIdArgs,
   GetWhere,
   GetWhereArgs,
