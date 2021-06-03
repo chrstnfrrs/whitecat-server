@@ -2,13 +2,13 @@ import Chance from 'chance';
 
 import * as ErrorFactories from '../model-factories/error-model-factories';
 import * as ErrorUtils from '../../src/utils/error-utils';
-import * as UserFactories from '../model-factories/user-model-factories';
-import * as UserResolvers from '../../src/resolvers/user-resolvers';
-import * as UserServices from '../../src/services/user-services';
-import { IContext, User, GraphqlError, Uuid } from '../../src/index.d';
+import * as WeightFactories from '../model-factories/weight-model-factories';
+import * as WeightResolvers from '../../src/resolvers/weight-resolvers';
+import * as WeightServices from '../../src/services/weight-services';
+import { IContext, Weight, GraphqlError, Uuid } from '../../src/index.d';
 
 jest.mock('../../src/utils/error-utils');
-jest.mock('../../src/services/user-services');
+jest.mock('../../src/services/weight-services');
 
 const {
   create: createService,
@@ -16,18 +16,17 @@ const {
   getById: getByIdService,
   getWhere: getWhereService,
   update: updateService,
-} = UserServices as jest.Mocked<typeof UserServices>;
+} = WeightServices as jest.Mocked<typeof WeightServices>;
 const { createGraphqlError } = ErrorUtils as jest.Mocked<typeof ErrorUtils>;
 
 const chance = new Chance();
 
-describe('Given a set of user resolvers', () => {
+describe('Given a set of weight resolvers', () => {
   let context: IContext,
-    args: User.Args,
-    input: User.Input | User.UpdateInput,
     id: Uuid,
     userId: Uuid,
-    where: User.Where;
+    where: Weight.Where,
+    input: Weight.Input;
 
   beforeEach(() => {
     context = {};
@@ -35,35 +34,31 @@ describe('Given a set of user resolvers', () => {
 
   afterEach(jest.resetAllMocks);
 
-  describe('When creating a user', () => {
-    let root: null;
+  describe('When creating a Weight', () => {
+    let root: null, args: Weight.ArgsCreate;
 
     beforeEach(() => {
-      input = UserFactories.createRandomUserInput();
+      input = WeightFactories.createRandomWeightInput();
       args = {
         input,
       };
     });
 
     describe('When successful', () => {
-      let expectedUser: User.User, user: User.User;
+      let expectedWeight: Weight.Weight, weight: Weight.Weight;
 
       beforeEach(async () => {
-        expectedUser = UserFactories.createRandomUser();
-        createService.mockResolvedValue(expectedUser);
+        expectedWeight = WeightFactories.createRandomWeight();
+        createService.mockResolvedValue(expectedWeight);
 
-        user = await UserResolvers.create(
-          root,
-          args as User.CreateArgs,
-          context,
-        );
+        weight = await WeightResolvers.create(root, args, context);
       });
-      test('Then should create a user', () => {
+      test('Then should create a weight', () => {
         expect(createService).toHaveBeenCalledTimes(1);
         expect(createService).toHaveBeenCalledWith(input);
       });
-      test('Then should return a user', () => {
-        expect(user).toStrictEqual(expectedUser);
+      test('Then should return a weight', () => {
+        expect(weight).toStrictEqual(expectedWeight);
       });
     });
     describe('When unsuccessful', () => {
@@ -77,12 +72,12 @@ describe('Given a set of user resolvers', () => {
         createGraphqlError.mockReturnValue(expectedError);
 
         try {
-          await UserResolvers.create(root, args as User.CreateArgs, context);
+          await WeightResolvers.create(root, args, context);
         } catch (error) {
           actualError = error;
         }
       });
-      test('Then should try to create a user', () => {
+      test('Then should try to create a weight', () => {
         expect(createService).toHaveBeenCalledTimes(1);
         expect(createService).toHaveBeenCalledWith(input);
       });
@@ -95,8 +90,8 @@ describe('Given a set of user resolvers', () => {
       });
     });
   });
-  describe('When deleting a user', () => {
-    let root: null;
+  describe('When deleting a weight', () => {
+    let root: null, args: Weight.ArgsDel;
 
     beforeEach(() => {
       id = chance.guid();
@@ -112,9 +107,9 @@ describe('Given a set of user resolvers', () => {
         expectedResult = chance.bool();
         delService.mockResolvedValue(expectedResult);
 
-        result = await UserResolvers.del(root, args as User.DelArgs, context);
+        result = await WeightResolvers.del(root, args, context);
       });
-      test('Then should delete a user', () => {
+      test('Then should delete a weight', () => {
         expect(delService).toHaveBeenCalledTimes(1);
         expect(delService).toHaveBeenCalledWith(id);
       });
@@ -133,12 +128,12 @@ describe('Given a set of user resolvers', () => {
         createGraphqlError.mockReturnValue(expectedError);
 
         try {
-          await UserResolvers.del(root, args as User.DelArgs, context);
+          await WeightResolvers.del(root, args, context);
         } catch (error) {
           actualError = error;
         }
       });
-      test('Then should try to delete a user', () => {
+      test('Then should try to delete a Weight', () => {
         expect(delService).toHaveBeenCalledTimes(1);
         expect(delService).toHaveBeenCalledWith(id);
       });
@@ -151,8 +146,8 @@ describe('Given a set of user resolvers', () => {
       });
     });
   });
-  describe('When getting a user by id', () => {
-    let root: null;
+  describe('When getting a weight by id', () => {
+    let root: null, args: Weight.ArgsGetById;
 
     beforeEach(() => {
       id = chance.guid();
@@ -162,23 +157,19 @@ describe('Given a set of user resolvers', () => {
     });
 
     describe('When successful', () => {
-      let expectedResult: User.User, result: User.User;
+      let expectedResult: Weight.Weight, result: Weight.Weight;
 
       beforeEach(async () => {
-        expectedResult = UserFactories.createRandomUser();
+        expectedResult = WeightFactories.createRandomWeight();
         getByIdService.mockResolvedValue(expectedResult);
 
-        result = await UserResolvers.getById(
-          root,
-          args as User.GetByIdArgs,
-          context,
-        );
+        result = await WeightResolvers.getById(root, args, context);
       });
-      test('Then should get a user', () => {
+      test('Then should get a weight', () => {
         expect(getByIdService).toHaveBeenCalledTimes(1);
         expect(getByIdService).toHaveBeenCalledWith(id);
       });
-      test('Then should return a user', () => {
+      test('Then should return a weight', () => {
         expect(result).toStrictEqual(expectedResult);
       });
     });
@@ -193,12 +184,12 @@ describe('Given a set of user resolvers', () => {
         createGraphqlError.mockReturnValue(expectedError);
 
         try {
-          await UserResolvers.getById(root, args as User.GetByIdArgs, context);
+          await WeightResolvers.getById(root, args, context);
         } catch (error) {
           actualError = error;
         }
       });
-      test('Then should try to get a user', () => {
+      test('Then should try to get a weight', () => {
         expect(getByIdService).toHaveBeenCalledTimes(1);
         expect(getByIdService).toHaveBeenCalledWith(id);
       });
@@ -211,8 +202,8 @@ describe('Given a set of user resolvers', () => {
       });
     });
   });
-  describe('When getting a user by id on root', () => {
-    let root: User.NestedRoot;
+  describe('When getting a Weight by id on root', () => {
+    let root: Weight.RootGetByUserID, args: null;
 
     beforeEach(() => {
       userId = chance.guid();
@@ -222,19 +213,19 @@ describe('Given a set of user resolvers', () => {
     });
 
     describe('When successful', () => {
-      let expectedResult: User.User, result: User.User;
+      let expectedResult: Weight.Weight, result: Weight.Weight;
 
       beforeEach(async () => {
-        expectedResult = UserFactories.createRandomUser();
+        expectedResult = WeightFactories.createRandomWeight();
         getByIdService.mockResolvedValue(expectedResult);
 
-        result = await UserResolvers.getByIdRoot(root, args as null, context);
+        result = await WeightResolvers.getByUserId(root, args, context);
       });
-      test('Then should get a user', () => {
+      test('Then should get a Weight', () => {
         expect(getByIdService).toHaveBeenCalledTimes(1);
         expect(getByIdService).toHaveBeenCalledWith(userId);
       });
-      test('Then should return a user', () => {
+      test('Then should return a Weight', () => {
         expect(result).toStrictEqual(expectedResult);
       });
     });
@@ -249,12 +240,12 @@ describe('Given a set of user resolvers', () => {
         createGraphqlError.mockReturnValue(expectedError);
 
         try {
-          await UserResolvers.getByIdRoot(root, args as null, context);
+          await WeightResolvers.getByUserId(root, args, context);
         } catch (error) {
           actualError = error;
         }
       });
-      test('Then should try to get a user', () => {
+      test('Then should try to get a Weight', () => {
         expect(getByIdService).toHaveBeenCalledTimes(1);
         expect(getByIdService).toHaveBeenCalledWith(userId);
       });
@@ -267,34 +258,33 @@ describe('Given a set of user resolvers', () => {
       });
     });
   });
-  describe('When getting a user where x', () => {
-    let root: null;
+  describe('When getting a Weight where x', () => {
+    let root: null, args: Weight.ArgsWhere;
 
     beforeEach(() => {
-      where = UserFactories.createRandomUserInput();
+      where = WeightFactories.createRandomWeightInput();
       args = {
         where,
       };
     });
 
     describe('When successful', () => {
-      let expectedResult: User.User[], result: User.User[];
+      let expectedResult: Weight.Weight[], result: Weight.Weight[];
 
       beforeEach(async () => {
-        expectedResult = chance.n(UserFactories.createRandomUser, chance.d6());
+        expectedResult = chance.n(
+          WeightFactories.createRandomWeight,
+          chance.d6(),
+        );
         getWhereService.mockResolvedValue(expectedResult);
 
-        result = await UserResolvers.getWhere(
-          root,
-          args as User.GetWhereArgs,
-          context,
-        );
+        result = await WeightResolvers.getWhere(root, args, context);
       });
-      test('Then should get users', () => {
+      test('Then should get Weights', () => {
         expect(getWhereService).toHaveBeenCalledTimes(1);
         expect(getWhereService).toHaveBeenCalledWith(where);
       });
-      test('Then should return users', () => {
+      test('Then should return Weights', () => {
         expect(result).toStrictEqual(expectedResult);
       });
     });
@@ -309,16 +299,12 @@ describe('Given a set of user resolvers', () => {
         createGraphqlError.mockReturnValue(expectedError);
 
         try {
-          await UserResolvers.getWhere(
-            root,
-            args as User.GetWhereArgs,
-            context,
-          );
+          await WeightResolvers.getWhere(root, args, context);
         } catch (error) {
           actualError = error;
         }
       });
-      test('Then should try to get users', () => {
+      test('Then should try to get Weights', () => {
         expect(getWhereService).toHaveBeenCalledTimes(1);
         expect(getWhereService).toHaveBeenCalledWith(where);
       });
@@ -331,37 +317,33 @@ describe('Given a set of user resolvers', () => {
       });
     });
   });
-  describe('When updating a user', () => {
-    let root: null;
+  describe('When updating a Weight', () => {
+    let root: null, args: Weight.ArgsUpdate, update: Weight.Update;
 
     beforeEach(() => {
       id = chance.guid();
-      input = UserFactories.createRandomUserInput() as User.UpdateInput;
+      update = WeightFactories.createRandomWeightUpdate();
       args = {
         id,
-        input,
+        input: update,
       };
     });
 
     describe('When successful', () => {
-      let expectedUser: User.User, user: User.User;
+      let expectedWeight: Weight.Weight, weight: Weight.Weight;
 
       beforeEach(async () => {
-        expectedUser = UserFactories.createRandomUser();
-        updateService.mockResolvedValue(expectedUser);
+        expectedWeight = WeightFactories.createRandomWeight();
+        updateService.mockResolvedValue(expectedWeight);
 
-        user = await UserResolvers.update(
-          root,
-          args as User.UpdateArgs,
-          context,
-        );
+        weight = await WeightResolvers.update(root, args, context);
       });
-      test('Then should update a user', () => {
+      test('Then should update a Weight', () => {
         expect(updateService).toHaveBeenCalledTimes(1);
-        expect(updateService).toHaveBeenCalledWith(id, input);
+        expect(updateService).toHaveBeenCalledWith(id, update);
       });
-      test('Then should return a user', () => {
-        expect(user).toStrictEqual(expectedUser);
+      test('Then should return a Weight', () => {
+        expect(weight).toStrictEqual(expectedWeight);
       });
     });
     describe('When unsuccessful', () => {
@@ -375,14 +357,14 @@ describe('Given a set of user resolvers', () => {
         createGraphqlError.mockReturnValue(expectedError);
 
         try {
-          await UserResolvers.update(root, args as User.UpdateArgs, context);
+          await WeightResolvers.update(root, args, context);
         } catch (error) {
           actualError = error;
         }
       });
-      test('Then should try to update a user', () => {
+      test('Then should try to update a Weight', () => {
         expect(updateService).toHaveBeenCalledTimes(1);
-        expect(updateService).toHaveBeenCalledWith(id, input);
+        expect(updateService).toHaveBeenCalledWith(id, update);
       });
       test('Then should create a graphql error', () => {
         expect(createGraphqlError).toHaveBeenCalledTimes(1);

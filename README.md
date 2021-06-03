@@ -8,9 +8,9 @@ This is the server that runs **whitecat**. It's an Apollo server that connects t
 
 1. `yarn` - install dependencies
 2. `yarn docker:infra` - create a local, dockerized postgres instance
-3.  `yarn docker:setup` - run migrations and fill the postgres db with test data
-2. `yarn dev` - run server
-3. `yarn verify` - runs prettier, eslint, and code coverage
+3. `yarn docker:setup` - run migrations and fill the postgres db with test data
+4. `yarn dev` - run server
+5. `yarn verify` - runs prettier, eslint, and code coverage
 
 ## Using GraphQL Playground
 

@@ -46,7 +46,13 @@ type UpdateArgs = {
   input: UpdateInput;
 };
 
-type Args = CreateArgs | DelArgs | GetById | GetWhereArgs | UpdateArgs;
+type NestedRoot = {
+  userId: Types.Uuid;
+};
+
+type Root = NestedRoot | null;
+
+type Args = CreateArgs | DelArgs | GetById | GetWhereArgs | UpdateArgs | null;
 
 type Create = (
   root: null,
@@ -73,6 +79,14 @@ type GetById = (
   args: {
     id: Types.Uuid;
   },
+  context: Types.IContext,
+) => Promise<IUser | null>;
+
+type GetByIdRoot = (
+  root: {
+    userId: Types.Uuid;
+  },
+  args: null,
   context: Types.IContext,
 ) => Promise<IUser | null>;
 
@@ -108,6 +122,7 @@ export {
   Del,
   DelArgs,
   GetById,
+  GetByIdRoot,
   GetByIdArgs,
   GetWhere,
   GetWhereArgs,
@@ -117,4 +132,6 @@ export {
   Input,
   UpdateInput,
   Where,
+  Root,
+  NestedRoot,
 };
