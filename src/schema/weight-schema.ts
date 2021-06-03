@@ -2,8 +2,8 @@ import { gql } from 'apollo-server';
 
 const typeDefs = gql`
   extend type Query {
-    weights(id: ID!) [Weight!]!
-    weights(where: WeightWhere!) [Weight!]!
+    weights(id: ID!): [Weight!]!
+    weights(where: WeightWhere!): [Weight!]!
   }
 
   extend type Mutation {
