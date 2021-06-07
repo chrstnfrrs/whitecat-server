@@ -14,7 +14,7 @@
   "preset": "ts-jest",
   "roots": ["./tests"],
   "setupFilesAfterEnv": ["./tests/setup.ts"],
-  "testMatch": ["<rootDir>/tests/**/*.spec.(js|ts)"],
+  "testMatch": ["<rootDir>/tests/src/**/*.spec.(js|ts)"],
   "moduleFileExtensions": ["ts", "js", "json"],
   "transform": {
     "^.+\\.js$": "babel-jest",
