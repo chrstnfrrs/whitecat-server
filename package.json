@@ -6,7 +6,9 @@
   "main": "src/index.js",
   "private": true,
   "scripts": {
-    "acceptance": "jest --config acceptance/acceptance.config.json",
+    "acceptance:setup": "node --loader ts-node/esm --es-module-specifier-resolution=node tests/acceptance/setup/index",
+    "acceptance:test": "jest --config tests/acceptance/acceptance.config.json",
+    "acceptance": "yarn acceptance:setup && yarn acceptance:test",
     "build": "tsc -p .",
     "build:dev": "nodemon --es-module-specifier-resolution=node --watch build build/index",
     "coverage": "jest --collectCoverage --config jest.config.json",
