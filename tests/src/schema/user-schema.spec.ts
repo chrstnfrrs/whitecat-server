@@ -37,6 +37,7 @@ describe('Given the UserSchema', () => {
       }
 
       input UserWhere {
+        id: ID
         email: String
         firstName: String
         lastName: String
