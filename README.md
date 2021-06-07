@@ -2,15 +2,17 @@
 
 This is the server that runs **whitecat**. It's an Apollo server that connects to a PostgreSQL database using Knex.
 
-[![Acceptance](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/acceptance.yaml/badge.svg)](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/acceptance.yaml) [![Coverage](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/coverage.yaml/badge.svg)](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/coverage.yaml) [![Deploy](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/deploy.yaml/badge.svg)](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/deploy.yaml) [![Lint](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/lint.yaml/badge.svg)](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/lint.yaml) [![Prettier](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/prettier.yaml/badge.svg)](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/prettier.yaml) [![TypeCheck](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/typeCheck.yaml/badge.svg)](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/typeCheck.yaml)
+[![Acceptance](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/acceptance.yaml/badge.svg)](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/acceptance.yaml) [![Coverage](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/coverage.yaml/badge.svg)](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/coverage.yaml) [![Lint](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/lint.yaml/badge.svg)](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/lint.yaml) [![Prettier](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/prettier.yaml/badge.svg)](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/prettier.yaml) [![TypeCheck](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/typeCheck.yaml/badge.svg)](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/typeCheck.yaml)
 
 ## Scripts
 
-1. `yarn` - install dependencies
+1. `yarn install` - install dependencies
 2. `yarn docker:infra` - create a local, dockerized postgres instance
-3. `yarn docker:setup` - run migrations and fill the postgres db with test data
-4. `yarn dev` - run server
-5. `yarn verify` - runs prettier, eslint, and code coverage
+3. `yarn docker:setup` - run migrations and fill the postgres db with data
+4. `yarn docker:generate` - create database client
+5. `yarn docker:migrate` - run database migrations
+6. `yarn dev` - run dev server
+7. `yarn verify` - checks typescript types, style, formating, coverage
 
 ## Acceptance Tests
 
