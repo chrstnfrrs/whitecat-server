@@ -33,6 +33,7 @@ const typeDefs = gql`
   }
 
   input UserWhere {
+    id: ID
     email: String
     firstName: String
     lastName: String
