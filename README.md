@@ -14,7 +14,7 @@ This is the server that runs **whitecat**. It's an Apollo server that connects t
 
 ## Acceptance Tests
 
-Acceptance tests are documented in their own readme. For running acceptance tests: [Running Acceptance Tests](https://github.com/chrstnfrrs/whitecat-server/tree/main/tests/acceptance#running-acceptance-tests)
+Acceptance tests are documented in their own [README](https://github.com/chrstnfrrs/whitecat-server/tree/main/tests/acceptance). For running acceptance tests: [Running Acceptance Tests](https://github.com/chrstnfrrs/whitecat-server/tree/main/tests/acceptance#running-acceptance-tests)
 
 ## Using GraphQL Playground
 
