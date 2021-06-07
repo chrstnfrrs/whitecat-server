@@ -2,7 +2,7 @@
 
 This is the server that runs **whitecat**. It's an Apollo server that connects to a PostgreSQL database using Knex.
 
-[![Verify PR](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/acceptance.yaml/badge.svg)](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/acceptance.yaml)
+[![Acceptance](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/acceptance.yaml/badge.svg)](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/acceptance.yaml) [![TypeCheck](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/typeCheck.yaml/badge.svg)](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/typeCheck.yaml) [![Lint](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/lint.yaml/badge.svg)](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/lint.yaml) [![Prettier](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/prettier.yaml/badge.svg)](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/prettier.yaml) [![Coverage](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/coverage.yaml/badge.svg)](https://github.com/chrstnfrrs/whitecat-server/actions/workflows/coverage.yaml)
 
 ## Scripts
 
