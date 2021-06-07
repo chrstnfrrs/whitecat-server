@@ -11,6 +11,7 @@
     "acceptance": "yarn acceptance:setup && yarn acceptance:test",
     "build": "tsc -p .",
     "build:dev": "nodemon --es-module-specifier-resolution=node --watch build build/index",
+    "codegen": "graphql-codegen --config codegen.yml",
     "coverage": "jest --collectCoverage --config jest.config.json",
     "create-env": "printenv > .env",
     "dev": "yarn build && yarn build:dev",
@@ -31,8 +32,7 @@
     "start": "node --loader ts-node/esm --es-module-specifier-resolution=node src/index",
     "typeCheck": "tsc -p tsconfig.json",
     "unit": "jest --config jest.config.json",
-    "verify": "yarn typeCheck && yarn lint && yarn prettier:check && yarn coverage",
-    "codegen": "graphql-codegen --config codegen.yml"
+    "verify": "yarn typeCheck && yarn lint && yarn prettier:check && yarn coverage"
   },
   "keywords": [],
   "author": "",
