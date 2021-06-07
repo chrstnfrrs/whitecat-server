@@ -12,6 +12,10 @@ This is the server that runs **whitecat**. It's an Apollo server that connects t
 4. `yarn dev` - run server
 5. `yarn verify` - runs prettier, eslint, and code coverage
 
+## Acceptance Tests
+
+Acceptance tests are documented in their own [README](https://github.com/chrstnfrrs/whitecat-server/tree/main/tests/acceptance). For running acceptance tests: [Running Acceptance Tests](https://github.com/chrstnfrrs/whitecat-server/tree/main/tests/acceptance#running-acceptance-tests)
+
 ## Using GraphQL Playground
 
 After running `yarn dev` the graphql server will have a graphql playground available at: `http://localhost:8080/graphql`.
@@ -39,10 +43,3 @@ The response should appear as:
   }
 }
 ```
-
-## Running Acceptance Tests
-
-Running acceptance tests is a two step process.
-
-1. In terminal A, run the commands necessary to start the server: `yarn dev`.
-2. In terminal B, run the test suite: `yarn acceptance`.
