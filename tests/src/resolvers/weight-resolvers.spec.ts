@@ -1,14 +1,14 @@
 import Chance from 'chance';
 
-import * as ErrorFactories from '../model-factories/error-model-factories';
-import * as ErrorUtils from '../../src/utils/error-utils';
-import * as WeightFactories from '../model-factories/weight-model-factories';
-import * as WeightResolvers from '../../src/resolvers/weight-resolvers';
-import * as WeightServices from '../../src/services/weight-services';
-import { IContext, Weight, GraphqlError, Uuid } from '../../src/index.d';
+import * as ErrorFactories from '../../model-factories/error-model-factories';
+import * as ErrorUtils from '../../../src/utils/error-utils';
+import * as WeightFactories from '../../model-factories/weight-model-factories';
+import * as WeightResolvers from '../../../src/resolvers/weight-resolvers';
+import * as WeightServices from '../../../src/services/weight-services';
+import { IContext, Weight, GraphqlError, Uuid } from '../../../src/index.d';
 
-jest.mock('../../src/utils/error-utils');
-jest.mock('../../src/services/weight-services');
+jest.mock('../../../src/utils/error-utils');
+jest.mock('../../../src/services/weight-services');
 
 const {
   create: createService,

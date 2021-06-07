@@ -1,9 +1,9 @@
-import { resolvers } from '../../src/resolvers';
-import * as UserResolvers from '../../src/resolvers/user-resolvers';
-import * as WeightResolvers from '../../src/resolvers/weight-resolvers';
+import { resolvers } from '../../../src/resolvers';
+import * as UserResolvers from '../../../src/resolvers/user-resolvers';
+import * as WeightResolvers from '../../../src/resolvers/weight-resolvers';
 
-jest.mock('../../src/resolvers/user-resolvers');
-jest.mock('../../src/resolvers/weight-resolvers');
+jest.mock('../../../src/resolvers/user-resolvers');
+jest.mock('../../../src/resolvers/weight-resolvers');
 
 const {
   create: createUser,

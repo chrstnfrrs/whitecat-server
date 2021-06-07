@@ -1,15 +1,15 @@
 import Chance from 'chance';
 
-import * as PrismaAdapter from '../../src/adapters/prisma-adapter';
-import * as UserServices from '../../src/services/user-services';
-import { AllowAny, User, Uuid } from '../../src/index.d';
-import * as PrismaFactories from '../model-factories/prisma';
+import * as PrismaAdapter from '../../../src/adapters/prisma-adapter';
+import * as UserServices from '../../../src/services/user-services';
+import { AllowAny, User, Uuid } from '../../../src/index.d';
+import * as PrismaFactories from '../../model-factories/prisma';
 import {
   createRandomUser,
   createRandomUserInput,
-} from '../model-factories/user-model-factories';
+} from '../../model-factories/user-model-factories';
 
-jest.mock('../../src/adapters/prisma-adapter');
+jest.mock('../../../src/adapters/prisma-adapter');
 
 const { prisma } = (PrismaAdapter as jest.Mocked<
   typeof PrismaAdapter

@@ -1,21 +1,23 @@
 import Prisma from '@prisma/client';
+import Chance from 'chance';
 
 const { PrismaClient } = Prisma;
 
+const chance = new Chance();
 const prisma = new PrismaClient();
 
 const createUsers = async (): Promise<void> => {
   const data = [];
 
   const hasAdmin = await prisma.user.findFirst({
-    where: { email: 'admin@test.com' },
+    where: { email: 'user@whitecat.com' },
   });
 
   if (!hasAdmin) {
     data.push({
-      email: 'admin@test.com',
-      firstName: 'Christian',
-      lastName: 'Farris',
+      email: 'user@whitecat.com',
+      firstName: chance.first(),
+      lastName: chance.last(),
     });
   }
 
