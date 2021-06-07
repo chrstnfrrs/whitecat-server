@@ -4,6 +4,7 @@ import Chance from 'chance';
 const { PrismaClient } = Prisma;
 
 const chance = new Chance();
+
 const prisma = new PrismaClient();
 
 const createUsers = async (): Promise<void> => {
