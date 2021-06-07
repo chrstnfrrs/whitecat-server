@@ -24,6 +24,7 @@
     "docker:setup": "yarn docker:generate && yarn docker:migrate:dev && yarn docker:setup:data",
     "docker:stop": "yarn docker:postgres:stop",
     "gcp-build": "tsc",
+    "git:add": "git add .",
     "lint": "eslint 'src/**/*.ts' 'tests/**/*.ts' 'infrastructure/**/*.ts' --quiet",
     "prettier": "prettier --write .",
     "prettier:check": "prettier --check .",
@@ -78,5 +79,11 @@
     "prisma": "^2.23.0",
     "ts-jest": "^26.5.4",
     "typescript": "^4.2.4"
+  },
+  "git": {
+    "pre-commit": [
+      "prettier",
+      "git:add"
+    ]
   }
 }
