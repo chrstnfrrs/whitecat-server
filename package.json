@@ -6,9 +6,10 @@
   "main": "src/index.js",
   "private": true,
   "scripts": {
+    "acceptance:cleanup": "node --loader ts-node/esm --es-module-specifier-resolution=node tests/acceptance/setup/cleanup",
     "acceptance:setup": "node --loader ts-node/esm --es-module-specifier-resolution=node tests/acceptance/setup/index",
     "acceptance:test": "jest --config tests/acceptance/acceptance.config.json",
-    "acceptance": "yarn acceptance:setup && yarn acceptance:test",
+    "acceptance": "yarn acceptance:cleanup && yarn acceptance:setup && yarn acceptance:test && yarn acceptance:cleanup",
     "build": "tsc -p .",
     "build:dev": "nodemon --es-module-specifier-resolution=node --watch build build/index",
     "codegen": "graphql-codegen --config codegen.yml",
