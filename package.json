@@ -82,8 +82,7 @@
   },
   "git": {
     "pre-commit": [
-      "prettier",
-      "git:add"
+      "prettier"
     ]
   }
 }
