@@ -1,10 +1,6 @@
-import Prisma from '@prisma/client';
-
 import { USERS } from '../constants/user';
 
-const { PrismaClient } = Prisma;
-
-const prisma = new PrismaClient();
+import { prisma } from './client';
 
 const setupUsers = async (): Promise<void> => {
   const data = USERS;
