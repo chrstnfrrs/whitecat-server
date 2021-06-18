@@ -35,8 +35,8 @@ describe('Given the WeightSchema', () => {
       }
 
       input WeightWhere {
+        userId: ID!
         id: ID
-        userId: ID
         weight: Float
         date: String
       }
