@@ -17,7 +17,7 @@ import {
 import * as ScalarTypes from './scalar-resolvers';
 
 const resolvers = {
-  ...ScalarTypes,
+  Date: ScalarTypes.DateTime,
   Mutation: {
     createUser,
     createWeight,
