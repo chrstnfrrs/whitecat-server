@@ -3,6 +3,12 @@ import { prisma } from '../adapters/prisma-adapter';
 import * as WeightModels from '../models/weight';
 
 const create = async (input: Weight.Input): Promise<Weight.Weight> => {
+  const user = await prisma.user.findUnique({ where: { id: input.userId } });
+
+  if (!user) {
+    throw new Error('User associated with weight not found');
+  }
+
   const weight = await prisma.weight.create({ data: input });
 
   if (!weight) {
