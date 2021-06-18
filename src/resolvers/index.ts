@@ -14,8 +14,10 @@ import {
   getByUserId as getWeightByUserId,
   update as updateWeight,
 } from './weight-resolvers';
+import { Date } from './scalar-resolvers';
 
 const resolvers = {
+  Date,
   Mutation: {
     createUser,
     createWeight,
