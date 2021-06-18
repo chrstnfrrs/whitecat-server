@@ -10,10 +10,6 @@ describe('Given the User Model', () => {
     currentUsers: Types.User.User[],
     success: boolean;
 
-  beforeAll(() => {
-    return;
-  });
-
   describe('When creating user', () => {
     let newUser: Types.User.Input;
 
@@ -108,7 +104,7 @@ describe('Given the User Model', () => {
     });
 
     test('Then create the expected users', () => {
-      expect(currentUsers).toStrictEqual(Constants.USERS);
+      expect(currentUsers).toContainEqual(Constants.USER);
     });
   });
   describe('When updating a user', () => {
