@@ -7,6 +7,14 @@ type User = {
   lastName: string;
 };
 
+type UserGQL = {
+  id: Types.Uuid;
+  email: string;
+  firstName: string;
+  lastName: string;
+  weights: Types.Weight.Weight[];
+};
+
 type Input = {
   email: string;
   firstName: string;
@@ -129,6 +137,7 @@ export {
   Update,
   UpdateArgs,
   User,
+  UserGQL,
   Input,
   UpdateInput,
   Where,
