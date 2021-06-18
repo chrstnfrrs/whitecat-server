@@ -22,7 +22,7 @@ type ArgsWhere = {
 };
 
 type RootGetByUserID = {
-  userId: Types.Uuid;
+  id: Types.Uuid;
 };
 
 type Input = {
@@ -69,7 +69,7 @@ type ResolverGetById = (
 
 type ResolverGetByUserId = (
   root: {
-    userId: Types.Uuid;
+    id: Types.Uuid;
   },
   args: null,
   context: Types.IContext,
