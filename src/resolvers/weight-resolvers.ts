@@ -33,10 +33,10 @@ const getById: Types.Weight.ResolverGetById = async (_root, args) => {
 };
 
 const getByUserId: Types.Weight.ResolverGetByUserId = async (root) => {
-  const { userId } = root;
+  const { id: userId } = root;
 
   try {
-    return await WeightServices.getById(userId);
+    return await WeightServices.getByUserId(userId);
   } catch (error) {
     throw ErrorUtils.createGraphqlError(error);
   }
