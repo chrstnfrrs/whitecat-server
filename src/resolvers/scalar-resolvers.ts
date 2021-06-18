@@ -3,7 +3,7 @@ import { Kind } from 'graphql/language';
 
 import { AllowAny } from '../index.d';
 
-const Date: AllowAny = new GraphQLScalarType({
+const DateTime: AllowAny = new GraphQLScalarType({
   description: 'Date custom scalar type',
   name: 'Date',
   parseLiteral: (ast) => {
@@ -21,4 +21,4 @@ const Date: AllowAny = new GraphQLScalarType({
   },
 });
 
-export { Date };
+export { DateTime };
