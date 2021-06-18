@@ -1,14 +1,12 @@
-import Prisma from '@prisma/client';
+import * as CONSTANTS from '../constants/weight';
 
-import { WEIGHTS } from '../constants/weight';
-
-const { PrismaClient } = Prisma;
-
-const prisma = new PrismaClient();
+import { prisma } from './client';
 
 const setupWeights = async (): Promise<void> => {
-  const data = WEIGHTS;
+  const data = CONSTANTS.WEIGHTS;
 
+  // Create users for acceptance tests
+  await prisma.user.createMany({ data: CONSTANTS.WEIGHT_USERS });
   // Create weights for acceptance tests
   await prisma.weight.createMany({ data });
 
