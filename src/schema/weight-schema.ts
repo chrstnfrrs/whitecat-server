@@ -15,26 +15,27 @@ const typeDefs = gql`
   type Weight {
     id: ID!
     weight: Float!
-    date: String!
+    date: Date!
     user: User!
+    userId: ID!
   }
 
   input WeightInput {
     userId: ID!
     weight: Float!
-    date: String
+    date: Date
   }
 
   input WeightUpdate {
     weight: Float
-    date: String
+    date: Date
   }
 
   input WeightWhere {
+    userId: ID!
     id: ID
-    userId: ID
     weight: Float
-    date: String
+    date: Date
   }
 `;
 
