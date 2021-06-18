@@ -26,7 +26,7 @@ type RootGetByUserID = {
 };
 
 type Input = {
-  date?: Date;
+  date?: Date | string;
   userId: string;
   weight: float;
 };
