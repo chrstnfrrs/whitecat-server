@@ -8,7 +8,7 @@ const typeDefs = gql`
 
   extend type Mutation {
     createWeight(input: WeightInput!): Weight!
-    updateWeight(id: ID!, input: WeightUpdate!): User!
+    updateWeight(id: ID!, input: WeightUpdate!): Weight!
     deleteWeight(id: ID!): Boolean!
   }
 
