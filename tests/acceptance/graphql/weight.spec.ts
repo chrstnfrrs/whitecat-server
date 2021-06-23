@@ -2,7 +2,6 @@ import { request, gql } from 'graphql-request';
 
 import * as Types from '../../../src/index.d';
 import * as WeightConstants from '../constants/weight';
-import * as WeightFactory from '../../model-factories/weight-model-factories';
 
 describe('Given the Weight Model', () => {
   let currentWeight: Types.AllowAny;
@@ -101,6 +100,58 @@ describe('Given the Weight Model', () => {
 
     test('Then return the expected weights', () => {
       expect(currentWeight).toContainEqual(WeightConstants.WEIGHT);
+    });
+  });
+  describe('When updating a weight', () => {
+    let weight: number;
+
+    beforeEach(async () => {
+      weight = 99.99;
+
+      const data: Types.AllowAny = await request(
+        `http://localhost:${process.env.PORT || 8080}`,
+        gql`
+          mutation UpdateWeight($id: ID!, $weight: Float!) {
+            updateWeight(id: $id, input: { weight: $weight }) {
+              id
+              weight
+              date
+              userId
+            }
+          }
+        `,
+        {
+          id: WeightConstants.WEIGHT_UUID,
+          weight,
+        },
+      );
+
+      currentWeight = data.updateWeight;
+    });
+
+    test('Then return the expected weight', () => {
+      expect(currentWeight.weight).toStrictEqual(weight);
+    });
+  });
+  describe('When deleting a weight', () => {
+    beforeEach(async () => {
+      const data: Types.AllowAny = await request(
+        `http://localhost:${process.env.PORT || 8080}`,
+        gql`
+          mutation DeleteWeight($id: ID!) {
+            deleteWeight(id: $id)
+          }
+        `,
+        {
+          id: WeightConstants.DELETE_WEIGHT_UUID,
+        },
+      );
+
+      currentWeight = data.deleteWeight;
+    });
+
+    test('Then return the weight was deleted', () => {
+      expect(currentWeight).toStrictEqual(true);
     });
   });
 });
