@@ -80,7 +80,11 @@ describe('Given the User Model', () => {
     });
     describe('When querying for weights for a user', () => {
       test('Then find the expected weight', () => {
-        expect(currentUser.weights[0]).toMatchObject(WEIGHT);
+        const weight = currentUser.weights.find(
+          (item) => item.id === WEIGHT.id,
+        );
+
+        expect(weight).toMatchObject(WEIGHT);
       });
     });
   });
