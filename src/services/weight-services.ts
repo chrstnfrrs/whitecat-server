@@ -27,10 +27,10 @@ const getById = async (id: Uuid): Promise<Weight.Weight | null> => {
   return weight;
 };
 
-const getByUserId = async (userId: Uuid): Promise<Weight.Weight[] | null> => {
+const getByUserId = async (userId: Uuid): Promise<Weight.Weight[] | []> => {
   const weights = await prisma.weight.findMany({ where: { userId } });
 
-  return weights ? WeightModels.mapToCollection(weights) : [];
+  return weights.length ? WeightModels.mapToCollection(weights) : [];
 };
 
 const getWhere = async (where: Weight.Where): Promise<Weight.Weight[] | []> => {
