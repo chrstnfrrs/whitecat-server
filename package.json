@@ -12,7 +12,6 @@
     "acceptance": "yarn acceptance:cleanup && yarn acceptance:setup && yarn acceptance:test && yarn acceptance:cleanup",
     "build": "tsc -p .",
     "build:dev": "nodemon --es-module-specifier-resolution=node --watch build build/index",
-    "codegen": "graphql-codegen --config codegen.yml",
     "coverage": "jest --collectCoverage --config jest.config.json",
     "create-env": "printenv > .env",
     "dev": "yarn build && yarn build:dev",
