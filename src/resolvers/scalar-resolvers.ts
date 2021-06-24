@@ -1,9 +1,7 @@
 import { GraphQLScalarType } from 'graphql';
 import { Kind } from 'graphql/language';
 
-import { AllowAny } from '../index.d';
-
-const DateTime: AllowAny = new GraphQLScalarType({
+const DateTime: GraphQLScalarType = new GraphQLScalarType({
   description: 'Date custom scalar type',
   name: 'Date',
   parseLiteral: (ast) => {
