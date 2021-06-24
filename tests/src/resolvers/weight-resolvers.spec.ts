@@ -164,7 +164,11 @@ describe('Given a set of weight resolvers', () => {
         expectedResult = WeightFactories.createRandomWeight();
         getByIdService.mockResolvedValue(expectedResult);
 
-        result = await WeightResolvers.getById(root, args, context);
+        result = (await WeightResolvers.getById(
+          root,
+          args,
+          context,
+        )) as Weight.Weight;
       });
       test('Then should get a weight', () => {
         expect(getByIdService).toHaveBeenCalledTimes(1);
@@ -214,7 +218,7 @@ describe('Given a set of weight resolvers', () => {
     });
 
     describe('When successful', () => {
-      let expectedResult: Weight.Weight[], result: Weight.Weight;
+      let expectedResult: Weight.Weight[], result: Weight.Weight[];
 
       beforeEach(async () => {
         expectedResult = [WeightFactories.createRandomWeight()];
