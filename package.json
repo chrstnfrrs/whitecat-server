@@ -20,7 +20,7 @@
     "docker:generate": "npx prisma generate",
     "docker:migrate": "npx prisma migrate deploy",
     "docker:migrate:dev": "npx prisma migrate dev",
-    "docker:postgres": "cd infrastructure && docker compose down && docker compose up -d",
+    "docker:postgres": "cd infrastructure && docker-compose down && docker-compose up -d",
     "docker:postgres:stop": "cd infrastructure && docker-compose down",
     "docker:setup:data": "node --loader ts-node/esm --es-module-specifier-resolution=node infrastructure/data/index",
     "docker:setup": "yarn docker:generate && yarn docker:migrate:dev && yarn docker:setup:data",
