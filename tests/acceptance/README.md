@@ -7,6 +7,9 @@ Running acceptance tests is a two step process.
 1. Ensure the necessary infrastructure is running
 2. Run yarn acceptance
 
+** You cannot have a locally running instance of postgres to run dockerized postgres **
+To stop locally running postgres `brew services stop postgresql`.
+
 ### Starting Infrastructure
 
 You must start the server and connect to a database to run acceptance tests. Following these steps will meet the requirements.

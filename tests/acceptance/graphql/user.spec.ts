@@ -2,16 +2,13 @@ import { request, gql } from 'graphql-request';
 
 import * as Types from '../../../src/index.d';
 import * as Constants from '../constants/user';
+import { WEIGHT } from '../constants/weight';
 import * as UserFactory from '../../model-factories/user-model-factories';
 
 describe('Given the User Model', () => {
-  let currentUser: Types.User.User,
+  let currentUser: Types.User.UserGQL,
     currentUsers: Types.User.User[],
     success: boolean;
-
-  beforeAll(() => {
-    return;
-  });
 
   describe('When creating user', () => {
     let newUser: Types.User.Input;
@@ -63,6 +60,12 @@ describe('Given the User Model', () => {
               firstName
               lastName
               email
+              weights {
+                id
+                weight
+                date
+                userId
+              }
             }
           }
         `,
@@ -73,7 +76,16 @@ describe('Given the User Model', () => {
     });
 
     test('Then find the expected user', () => {
-      expect(currentUser).toStrictEqual(Constants.USER);
+      expect(currentUser).toMatchObject(Constants.USER);
+    });
+    describe('When querying for weights for a user', () => {
+      test('Then find the expected weight', () => {
+        const weight = currentUser.weights.find(
+          (item) => item.id === WEIGHT.id,
+        );
+
+        expect(weight).toMatchObject(WEIGHT);
+      });
     });
   });
   describe('When querying for users', () => {
@@ -96,7 +108,7 @@ describe('Given the User Model', () => {
     });
 
     test('Then create the expected users', () => {
-      expect(currentUsers).toStrictEqual(Constants.USERS);
+      expect(currentUsers).toContainEqual(Constants.USER);
     });
   });
   describe('When updating a user', () => {
@@ -138,7 +150,7 @@ describe('Given the User Model', () => {
             deleteUser(id: $id)
           }
         `,
-        { id: Constants.USER_UUID },
+        { id: Constants.DELETE_USER_UUID },
       );
 
       success = data.deleteUser;

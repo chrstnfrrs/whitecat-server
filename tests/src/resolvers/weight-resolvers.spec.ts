@@ -14,6 +14,7 @@ const {
   create: createService,
   del: delService,
   getById: getByIdService,
+  getByUserId: getByUserIdService,
   getWhere: getWhereService,
   update: updateService,
 } = WeightServices as jest.Mocked<typeof WeightServices>;
@@ -163,7 +164,11 @@ describe('Given a set of weight resolvers', () => {
         expectedResult = WeightFactories.createRandomWeight();
         getByIdService.mockResolvedValue(expectedResult);
 
-        result = await WeightResolvers.getById(root, args, context);
+        result = (await WeightResolvers.getById(
+          root,
+          args,
+          context,
+        )) as Weight.Weight;
       });
       test('Then should get a weight', () => {
         expect(getByIdService).toHaveBeenCalledTimes(1);
@@ -202,30 +207,30 @@ describe('Given a set of weight resolvers', () => {
       });
     });
   });
-  describe('When getting a Weight by id on root', () => {
+  describe('When getting Weights by id on root', () => {
     let root: Weight.RootGetByUserID, args: null;
 
     beforeEach(() => {
       userId = chance.guid();
       root = {
-        userId,
+        id: userId,
       };
     });
 
     describe('When successful', () => {
-      let expectedResult: Weight.Weight, result: Weight.Weight;
+      let expectedResult: Weight.Weight[], result: Weight.Weight[];
 
       beforeEach(async () => {
-        expectedResult = WeightFactories.createRandomWeight();
-        getByIdService.mockResolvedValue(expectedResult);
+        expectedResult = [WeightFactories.createRandomWeight()];
+        getByUserIdService.mockResolvedValue(expectedResult);
 
         result = await WeightResolvers.getByUserId(root, args, context);
       });
       test('Then should get a Weight', () => {
-        expect(getByIdService).toHaveBeenCalledTimes(1);
-        expect(getByIdService).toHaveBeenCalledWith(userId);
+        expect(getByUserIdService).toHaveBeenCalledTimes(1);
+        expect(getByUserIdService).toHaveBeenCalledWith(userId);
       });
-      test('Then should return a Weight', () => {
+      test('Then should return Weights', () => {
         expect(result).toStrictEqual(expectedResult);
       });
     });
@@ -234,7 +239,7 @@ describe('Given a set of weight resolvers', () => {
 
       beforeEach(async () => {
         creationError = new Error(chance.string());
-        getByIdService.mockRejectedValue(creationError);
+        getByUserIdService.mockRejectedValue(creationError);
 
         expectedError = ErrorFactories.createRandomGraphqlError();
         createGraphqlError.mockReturnValue(expectedError);
@@ -246,8 +251,8 @@ describe('Given a set of weight resolvers', () => {
         }
       });
       test('Then should try to get a Weight', () => {
-        expect(getByIdService).toHaveBeenCalledTimes(1);
-        expect(getByIdService).toHaveBeenCalledWith(userId);
+        expect(getByUserIdService).toHaveBeenCalledTimes(1);
+        expect(getByUserIdService).toHaveBeenCalledWith(userId);
       });
       test('Then should create a graphql error', () => {
         expect(createGraphqlError).toHaveBeenCalledTimes(1);
@@ -262,7 +267,7 @@ describe('Given a set of weight resolvers', () => {
     let root: null, args: Weight.ArgsWhere;
 
     beforeEach(() => {
-      where = WeightFactories.createRandomWeightInput();
+      where = WeightFactories.createRandomWeightWhere();
       args = {
         where,
       };

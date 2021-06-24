@@ -1,7 +1,14 @@
 import { Weight, Uuid } from '../index.d';
 import { prisma } from '../adapters/prisma-adapter';
+import * as WeightModels from '../models/weight';
 
 const create = async (input: Weight.Input): Promise<Weight.Weight> => {
+  const user = await prisma.user.findUnique({ where: { id: input.userId } });
+
+  if (!user) {
+    throw new Error('User associated with weight not found');
+  }
+
   const weight = await prisma.weight.create({ data: input });
 
   if (!weight) {
@@ -18,6 +25,12 @@ const getById = async (id: Uuid): Promise<Weight.Weight | null> => {
   const weight = await prisma.weight.findUnique({ where: { id } });
 
   return weight;
+};
+
+const getByUserId = async (userId: Uuid): Promise<Weight.Weight[] | []> => {
+  const weights = await prisma.weight.findMany({ where: { userId } });
+
+  return weights.length ? WeightModels.mapToCollection(weights) : [];
 };
 
 const getWhere = async (where: Weight.Where): Promise<Weight.Weight[] | []> => {
@@ -42,4 +55,4 @@ const update = async (
   return weight;
 };
 
-export { create, del, getById, getWhere, update };
+export { create, del, getById, getByUserId, getWhere, update };

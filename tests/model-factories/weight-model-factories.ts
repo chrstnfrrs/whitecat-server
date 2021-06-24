@@ -17,7 +17,7 @@ const createRandomWeight = (weight = {}): Weight.Weight => ({
 });
 
 const createRandomWeightInput = (weight = {}): Weight.Input => ({
-  date: chance.date(),
+  date: chance.date().toISOString(),
   userId: chance.guid(),
   weight: chance.floating({
     fixed: 2,
