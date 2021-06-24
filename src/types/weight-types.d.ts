@@ -35,13 +35,13 @@ type ResolverCreate = (
   root: null,
   args: {
     input: {
-      date?: Date;
+      date?: Date | string;
       userId: string;
       weight: float;
     };
   },
   context: Types.IContext,
-) => Promise<IUser>;
+) => Promise<Weight>;
 
 type ResolverDel = (
   root: null,
@@ -49,7 +49,7 @@ type ResolverDel = (
     id: Types.Uuid;
   },
   context: Types.IContext,
-) => Promise<IUser>;
+) => Promise<boolean>;
 
 type ResolverGetById = (
   root: null,
@@ -57,15 +57,7 @@ type ResolverGetById = (
     id: Types.Uuid;
   },
   context: Types.IContext,
-) => Promise<IUser>;
-
-type ResolverGetById = (
-  root: null,
-  args: {
-    id: Types.Uuid;
-  },
-  context: Types.IContext,
-) => Promise<IUser>;
+) => Promise<Weight | null>;
 
 type ResolverGetByUserId = (
   root: {
@@ -73,7 +65,7 @@ type ResolverGetByUserId = (
   },
   args: null,
   context: Types.IContext,
-) => Promise<IUser>;
+) => Promise<Weight[] | []>;
 
 type ResolverGetWhere = (
   root: null,
@@ -86,7 +78,7 @@ type ResolverGetWhere = (
     };
   },
   context: Types.IContext,
-) => Promise<IUser>;
+) => Promise<Weight[]>;
 
 type ResolverUpdate = (
   root: null,
@@ -98,7 +90,7 @@ type ResolverUpdate = (
     };
   },
   context: Types.IContext,
-) => Promise<IUser>;
+) => Promise<Weight>;
 
 type Update = {
   date?: Date;
@@ -106,7 +98,7 @@ type Update = {
 };
 
 type Weight = {
-  date: Date;
+  date: Date | string;
   id: string;
   userId: Types.Uuid;
   weight: float;
