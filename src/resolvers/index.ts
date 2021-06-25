@@ -3,7 +3,6 @@ import {
   del as deleteUser,
   update as updateUser,
   getById as user,
-  getByIdRoot as userNested,
   getWhere as users,
 } from './user-resolvers';
 import {
@@ -35,9 +34,6 @@ const resolvers = {
   },
   User: {
     weights: getWeightByUserId,
-  },
-  Weight: {
-    user: userNested,
   },
 };
 

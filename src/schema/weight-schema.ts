@@ -16,7 +16,6 @@ const typeDefs = gql`
     id: ID!
     weight: Float!
     date: Date!
-    user: User!
     userId: ID!
   }
 

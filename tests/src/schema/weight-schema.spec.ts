@@ -20,7 +20,6 @@ describe('Given the WeightSchema', () => {
         id: ID!
         weight: Float!
         date: Date!
-        user: User!
         userId: ID!
       }
 
