@@ -32,16 +32,6 @@ const getById: Types.User.GetById = async (_root, args) => {
   }
 };
 
-const getByIdRoot: Types.User.GetByIdRoot = async (root) => {
-  const { userId } = root;
-
-  try {
-    return await UserServices.getById(userId);
-  } catch (error) {
-    throw ErrorUtils.createGraphqlError(error);
-  }
-};
-
 const getWhere: Types.User.GetWhere = async (_root, args) => {
   const { where } = args;
 
@@ -62,4 +52,4 @@ const update: Types.User.Update = async (_root, args) => {
   }
 };
 
-export { create, del, getById, getByIdRoot, getWhere, update };
+export { create, del, getById, getWhere, update };
