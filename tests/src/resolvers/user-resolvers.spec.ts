@@ -26,7 +26,6 @@ describe('Given a set of user resolvers', () => {
     args: User.Args,
     input: User.Input | User.UpdateInput,
     id: Uuid,
-    userId: Uuid,
     where: User.Where;
 
   beforeEach(() => {
@@ -201,62 +200,6 @@ describe('Given a set of user resolvers', () => {
       test('Then should try to get a user', () => {
         expect(getByIdService).toHaveBeenCalledTimes(1);
         expect(getByIdService).toHaveBeenCalledWith(id);
-      });
-      test('Then should create a graphql error', () => {
-        expect(createGraphqlError).toHaveBeenCalledTimes(1);
-        expect(createGraphqlError).toHaveBeenCalledWith(creationError);
-      });
-      test('Then should return an error', () => {
-        expect(actualError).toStrictEqual(expectedError);
-      });
-    });
-  });
-  describe('When getting a user by id on root', () => {
-    let root: User.NestedRoot;
-
-    beforeEach(() => {
-      userId = chance.guid();
-      root = {
-        userId,
-      };
-    });
-
-    describe('When successful', () => {
-      let expectedResult: User.User, result: User.User;
-
-      beforeEach(async () => {
-        expectedResult = UserFactories.createRandomUser();
-        getByIdService.mockResolvedValue(expectedResult);
-
-        result = await UserResolvers.getByIdRoot(root, args as null, context);
-      });
-      test('Then should get a user', () => {
-        expect(getByIdService).toHaveBeenCalledTimes(1);
-        expect(getByIdService).toHaveBeenCalledWith(userId);
-      });
-      test('Then should return a user', () => {
-        expect(result).toStrictEqual(expectedResult);
-      });
-    });
-    describe('When unsuccessful', () => {
-      let expectedError: GraphqlError, creationError: Error, actualError: Error;
-
-      beforeEach(async () => {
-        creationError = new Error(chance.string());
-        getByIdService.mockRejectedValue(creationError);
-
-        expectedError = ErrorFactories.createRandomGraphqlError();
-        createGraphqlError.mockReturnValue(expectedError);
-
-        try {
-          await UserResolvers.getByIdRoot(root, args as null, context);
-        } catch (error) {
-          actualError = error;
-        }
-      });
-      test('Then should try to get a user', () => {
-        expect(getByIdService).toHaveBeenCalledTimes(1);
-        expect(getByIdService).toHaveBeenCalledWith(userId);
       });
       test('Then should create a graphql error', () => {
         expect(createGraphqlError).toHaveBeenCalledTimes(1);

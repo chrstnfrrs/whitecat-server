@@ -12,7 +12,6 @@ const {
   del: deleteUser,
   update: updateUser,
   getById: user,
-  getByIdRoot: userNested,
   getWhere: users,
 } = UserResolvers as jest.Mocked<typeof UserResolvers>;
 const {
@@ -47,9 +46,6 @@ describe('Resolver Map', () => {
         },
         User: {
           weights: getWeightByUserId,
-        },
-        Weight: {
-          user: userNested,
         },
       }),
     );
